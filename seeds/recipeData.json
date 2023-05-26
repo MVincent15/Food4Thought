@@ -1,0 +1,57 @@
+[
+    {
+        "name": "Garlic Chili Oil Noodles",
+        "ingredients": [
+            "1 package ramen noodles",
+            "2 teaspoons sesame oil",
+            "2 teaspoons soy sauce",
+            "1 tablespoon chiu chow style chili oil",
+            "4 cloves garlic, minced",
+            "1 pinch black sesame seeds",
+            "2 green onions, sliced diagonally, or to taste"
+        ],
+        "directions": "Bring a pot of water to a boil over high heat. Add ramen noodles, and cook until tender, 3 to 4 minutes. Meanwhile, heat sesame oil, soy sauce, and chili oil in a wok over medium-high heat. Add garlic and stir fry until fragrant, 30 to 45 seconds. Remove from heat. Drain ramen noodles, add to the wok, and toss to coat. Sprinkle with sesame seeds and scallions for garnish. Enjoy!",
+        "cook_time": "10 mins",
+        "comments": "I buy my ramen at a local Asian market. It comes in a pack of 5 without seasoning packets. If yours comes with seasoning packets, discard them.",
+        "_id": 7
+    },
+    {
+        "name": "Crockpot Italian Chicken",
+        "ingredients": [
+            "1 (16 ounce) bottle Italian dressing (such as Olive Garden℠ Signature Italian Dressing)",
+            "1/4 cup grated Parmesan cheese",
+            "4 boneless skinless chicken breasts"
+        ],
+        "directions": "Stir Italian dressing and Parmesan cheese together in a bowl. Place chicken in a slow cooker, and pour dressing mixture over chicken. Cover and cook on Low until chicken is tender, no longer pink in the center, and the juices run clear, about 8 hours.",
+        "cook_time": "8 hrs 5 mins",
+        "comments": "",
+        "_id": 7
+    },
+    {
+        "name": "Pan-Fried Pork Chops",
+        "ingredients": [
+            "4 boneless pork chops, 3/4-inch thick",
+            "salt and freshly ground black pepper to taste",
+            "2 tablespoons all-purpose flour",
+            "½ cup cooking oil"
+        ],
+        "directions": "Do not pat chops dry, so seasonings and flour will stick. Season both sides of pork chops with salt and pepper, then sprinkle with flour on both sides. Use the back of a spoon to distribute the flour over the entire surface. Heat oil in a 12-inch non-stick skillet over medium heat until it shimmers. Carefully add pork chops and pan fry until brown, about 4 minutes. Do not disturb the chops until ready to turn. When you see the edges of the chops turn brown, turn, and pan fry the other side until no longer pink on the inside and brown on the outside, an additional 4 minutes. An instant-read thermometer inserted into the center should read 145 degrees F (63 degrees C). Reduce heat, if they are browning too quickly. Serve warm.",
+        "cook_time": "15 mins",
+        "comments": "You can season the pork chops the way your family likes them the best! Garlic salt, onion salt, or any seasoned salt may be used, if desired. Dried herbs may be added to the flour, for extra flavor. Thicker chops will take longer to cook, thinner chops will take less time. Use a meat thermometer and do not overcook.",
+        "_id": 7
+    },
+    {
+        "name": "Honey Glazed Chicken",
+        "ingredients": [
+            "¼ cup honey",
+            "2 tablespoons soy sauce",
+            "⅛ teaspoon red pepper flakes",
+            "1 ½ tablespoons olive oil",
+            "2 skinless, boneless chicken breast halves, cut into bite-size pieces"
+        ],
+        "directions": "Gather all ingredients. Whisk honey, soy sauce, and red pepper flakes in a bowl; set aside. Heat olive oil in a skillet over medium heat; cook and stir chicken in hot oil until lightly brown, about 5 minutes. Pour honey mixture into the skillet; continue to cook and stir until chicken is no longer pink in the center and sauce is thickened, about 5 minutes more. Serve hot and enjoy!",
+        "cook_time": "20 mins",
+        "comments": "",
+        "_id": 7
+    }
+]

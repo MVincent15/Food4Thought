@@ -15,8 +15,9 @@ Food.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    Ingredients: {
+    ingredients: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     directions: {
       type: DataTypes.STRING,
@@ -25,11 +26,11 @@ Food.init(
     },
     cook_time: {
       type: DataTypes.TIME,
-      allowNull: false,
+      allowNull: true,
     },
     comments: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
     _id: {
       type: DataTypes.INTEGER,
@@ -49,3 +50,4 @@ Food.init(
 );
 
 module.exports = Food;
+

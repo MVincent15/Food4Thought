@@ -1,22 +1,20 @@
-<div class="d-flex justify-content-center vh-100">
-    <div class="card align-self-center" style="width: 45%; height:fit-content; min-width:fit-content;">
-        <div class="card-header mb-0">
-            <h2 class="card-title" style="font-size: 1.5rem">Login</h2>
-        </div>
-       <form>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="login-email" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="login-password">
-            </div>
-            <button type="submit" class="btn btn-primary" id="submit-login-btn">Submit</button>
-        </form>
+<div class="login-container d-flex justify-content-start align-items-start">
+  <div class="card" style="width: 800px;">
+    <div class="card-header">
+      <h2 class="card-title" style="font-size: 2.0rem">Login</h2>
     </div>
+    <form>
+      <div class="card-body">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="login-email" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="login-password">
+        </div>
+        <button type="submit" class="btn btn-outline-success" id="submit-login-btn">Submit</button>
+      </div>
+    </form>
+  </div>
 </div>
-
-
-<script src="/js/login.js"></script>
-

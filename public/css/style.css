@@ -43,3 +43,27 @@ footer {
 .footer p {
     margin-bottom: 0;
 }
+
+  @media screen and (max-width: 765px) {}
+    body {
+        background-color: white;
+    }
+
+    main {
+        background-color: white;  
+    }
+
+@media screen and (min-width: 766px) {
+   main{
+
+    background-color: white;
+    
+}
+
+}
+
+
+
+
+
+

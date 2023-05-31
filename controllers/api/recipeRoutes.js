@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Recipe } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/dashboard', withAuth, async (req, res) => {
   try {
     const newRecipe = await Recipe.create({
       ...req.body,
@@ -15,7 +15,7 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/dashboard/:id', withAuth, async (req, res) => {
   try {
     const recipeData = await Recipe.destroy({
       where: {
@@ -25,7 +25,7 @@ router.delete('/:id', withAuth, async (req, res) => {
     });
 
     if (!recipeData) {
-      res.status(404).json({ message: 'No project found with this id!' });
+      res.status(404).json({ message: 'No recipe found with this id!' });
       return;
     }
 

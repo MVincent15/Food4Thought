@@ -1,0 +1,24 @@
+<div class="m-0 p-0">
+    <div class="container">
+        <div class="row pt-4">
+            <div class="col-md-5">
+                <h3 class="mb-4">Welcome!</h3>
+                {{#if loggedIn}}
+                <p>You can click on the Recipe Book to find your saved recipes, or on the dashboard to add a new recipe
+                    to the book, or if you need to edit or delete any recipes!
+                </p>
+                {{else}}
+                <p>To enjoy please login or sign-up</p>
+                <div class="row pt-3 d-flex justify-content-center">
+                    <div class="col-md-6 my-3">
+                        <a href="/login" class="btn btn-primary login-form" type="submit">Login</a>
+                    </div>
+                    <div class="col-md-6 my-3">
+                        <a href="/signup" class="btn btn-primary signup-form" type="submit">Sign-Up</a>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

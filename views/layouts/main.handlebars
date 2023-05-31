@@ -28,7 +28,7 @@
           <a class="nav-link" href="/recipeBook">Recipe Book</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/dashboard">Dashboard</a>
+          <a class="nav-link" id="dashboard-btn" href="/dashboard">Dashboard</a>
         </li>
         {{#if loggedIn}}
         <li class="nav-item">
@@ -36,7 +36,7 @@
         </li>
         {{else}}
         <li class="nav-item">
-          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link login-btn" href="/login">Login</a>
         </li>
         {{/if}}
       </ul>
@@ -50,7 +50,7 @@
 </main>
 <footer>
   <div class="d-flex flex-column text-center justify-content-center align-items-center footer">
-    <p>Food4Thought creeated by Megan Vincent, Shannon Price, Alphonse Johnson </p>
+    <p>Food4Thought created by Megan Vincent, Shannon Price, Alphonse Johnson </p>
   </div>
 </footer>
 </body>

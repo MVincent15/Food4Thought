@@ -1,0 +1,23 @@
+<div class="card mb-3" style="width: 25rem; min-width:fit-content;">
+    <div class="card-header mb-0">
+        <h2 id="recipe-title" class="card-title">{{name}}</h2>
+    </div>
+    <div class="card-body">
+        <p class="card-text">Ingredients:</p>
+        <ul>
+            {{#each (split_ingredients ingredients) as |ingredient|}}
+            <li>{{ingredient}}</li>
+            {{/each}}
+        </ul>
+        <p class="card-text">Directions:</p>
+        <ul>
+            {{#each (split_directions directions) as |direction|}}
+            <li>{{direction}}</li>
+            {{/each}}
+        </ul>
+        <p class="card-text">Cook Time: {{cook_time}}</p>
+        {{#if comments.length}}
+        <p class="card-text">Comments: {{comments}}</p>
+        {{/if}}
+    </div>
+</div>

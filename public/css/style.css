@@ -1,7 +1,6 @@
-
 body {
     background-color: #83c082;
-    margin-bottom: 80px; 
+    margin-bottom: 80px;
 }
 
 .navbar {
@@ -13,12 +12,12 @@ body {
 }
 
 .navbar-brand img {
-    height: 100px; 
+    height: 100px;
 }
 
 .nav-link {
     color: #045f22;
-    font-size: 25px; 
+    font-size: 25px;
     transition: color 0.3s ease;
 }
 
@@ -32,7 +31,7 @@ main {
 
 footer {
     background-color: #ffffff;
-    color:  #045f22;
+    color: #045f22;
     padding: 20px 0;
     text-align: center;
     position: fixed;
@@ -44,26 +43,21 @@ footer {
     margin-bottom: 0;
 }
 
-  @media screen and (max-width: 765px) {}
-    body {
-        background-color: white;
-    }
+@media screen and (max-width: 765px) {}
 
-    main {
-        background-color: white;  
-    }
+body {
+    background-color: #83c082;
+}
+
+main {
+    background-color: #83c082;
+}
 
 @media screen and (min-width: 766px) {
-   main{
+    main {
 
-    background-color: white;
-    
+        background-color: #83c082;
+
+    }
+
 }
-
-}
-
-
-
-
-
-

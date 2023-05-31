@@ -4,7 +4,9 @@ const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
-    res.render("homepage");
+    res.render("homepage", {
+        loggedIn: req.session.loggedIn
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -24,8 +26,11 @@ router.get("/dashboard", withAuth, async (req, res) => {
         },
       },
     });
+
+    console.log(req.session.user_id);
+
     const recipes = userRecipeData.map((recipe) => recipe.get({ plain: true }));
-    console.log(recipes);
+    console.log({ recipes });
 
     res.render("dashboard", { recipes, loggedIn: req.session.loggedIn });
   } catch (err) {
@@ -35,21 +40,21 @@ router.get("/dashboard", withAuth, async (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect("/");
-      return;
-    }
-  
-    res.render("login");
-  });
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
 
-  router.get("/signup", (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect("/");
-      return;
-    }
-  
-    res.render("signUp");
-  });
+  res.render("login");
+});
+
+router.get("/signup", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+
+  res.render("signUp");
+});
 
 module.exports = router;

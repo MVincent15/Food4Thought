@@ -16,23 +16,23 @@ Recipe.init(
       allowNull: false,
     },
     ingredients: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     directions: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       
     },
     cook_time: {
-      type: DataTypes.TIME,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     comments: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.TEXT,
         allowNull: true,
       },
-    _id: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'user',

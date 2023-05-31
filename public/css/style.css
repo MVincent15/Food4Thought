@@ -9,6 +9,7 @@
     color: var(--bs-purple);
   }
 
+<<<<<<< HEAD
 
   body {
     --bs-body-font-family: var(--bs-font-monospace);
@@ -26,6 +27,54 @@
 
 
 @media screen and (max-width: 765px) {}
+=======
+body {
+    background-color: #83c082;
+    margin-bottom: 80px; 
+}
+
+.navbar {
+    background-color: #9fb7a5;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+.navbar-brand img {
+    height: 100px; 
+}
+
+.nav-link {
+    color: #045f22;
+    font-size: 25px; 
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #05410e;
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    background-color: #ffffff;
+    color:  #045f22;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer p {
+    margin-bottom: 0;
+}
+
+  @media screen and (max-width: 765px) {}
+>>>>>>> 52dcb99c69cb787de819f48d471f1c256ff8ac12
     body {
         background-color: white;
     }

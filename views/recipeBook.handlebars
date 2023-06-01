@@ -1,0 +1,16 @@
+ {{#if recipes}}
+ <div class="row">
+        {{#each recipes as |recipe|}}
+        <div class="col-md-4">
+            <div class="d-flex justify-content-center">
+                {{> recipeCardNoEdit}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{else}}
+    <div class="p-2">
+    <h4 class="ms-4 mt-3">You Don't Have Any Recipes Yet!</h4>
+    <p class="ms-4">Click on the dashboard to create some recipes.</p>
+    </div>
+    {{/if}}

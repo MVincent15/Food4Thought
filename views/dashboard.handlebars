@@ -1,16 +1,16 @@
 <div class="d-flex">
     <div class="bg-secondary bg-gradient p-2 vw-100 d-flex justify-content-between">
         <h3 class="ms-4 align-self-center">Dashboard</h3>
-        <a href="NEED TO ADD LINK" type="button" class="btn btn-primary me-4 mt-2 mb-2">Create Recipe!</a>
+        <a href="/dashboard/addrecipe" type="button" class="btn btn-primary me-4 mt-2 mb-2">Create Recipe!</a>
     </div>
 </div>
 <div class="p-2">
-    <h4 class="ms-4 mt-3">Recipes</h4>
+    <h4 class="ms-4 mt-3">My Recipes</h4>
     <div class="row">
-        {{#each recipePost as |recipePost|}}
+        {{#each recipes as |recipe|}}
         <div class="col-md-4">
             <div class="d-flex justify-content-center">
-                {{> recipeHolder}}
+                {{> recipeCard}}
             </div>
         </div>
         {{/each}}

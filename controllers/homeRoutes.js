@@ -67,7 +67,48 @@ router.post("/dashboard/addrecipe", withAuth, async (req, res) => {
   }
 });
 
-router.delete("/dashboard/:id", withAuth, async (req, res) => {
+router.get("/dashboard/updaterecipe/:id", async (req, res) => {
+  try {
+    const recipeData = await Recipe.findByPk(req.params.id, {
+      include: [{ model: User,
+      attributes: {
+        exclude: ["password"],
+      }}]
+    });
+    
+    const recipe = recipeData.get({ plain: true });
+
+    res.render("updateRecipe", {
+        recipe: recipe,
+        loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.put("/dashboard/updaterecipe/:id", withAuth, async (req, res) => {
+  try {
+    const recipeData = await Recipe.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if(!recipeData[0]) {
+      res.status(404).json({message: 'No recipe found!'});
+      return;
+    }
+
+    res.render("dashboard", { recipeData, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.delete("/dashboard/deleterecipe/:id", withAuth, async (req, res) => {
   try {
     const recipeData = await Recipe.destroy({
       where: {
@@ -77,7 +118,7 @@ router.delete("/dashboard/:id", withAuth, async (req, res) => {
     });
 
     if (!recipeData) {
-      res.status(404).json({ message: "No recipe found with this id!" });
+      res.status(404).json({ message: "No recipe found!" });
       return;
     }
 

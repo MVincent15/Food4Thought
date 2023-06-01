@@ -1,11 +1,13 @@
 module.exports = {
     split_ingredients: (string) => {
     const sentences = string.split(",");
-    return sentences;
+    const filteredSentences = sentences.filter((sentence) => sentence.trim() !== "");
+        return filteredSentences;
   },
     split_directions: (string) => {
         const sentences = string.split(".");
-        return sentences;
+        const filteredSentences = sentences.filter((sentence) => sentence.trim() !== "");
+        return filteredSentences;
       },
 };
 

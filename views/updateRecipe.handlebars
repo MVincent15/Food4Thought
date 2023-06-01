@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-center align-items-center">
+  <div class="container">
+    <div class="card" style="height: fit-content">
+      <div class="form-group m-3">
+        <label for="recipe-title-add" class="form-label custom-label">Recipe Title:</label>
+        <input type="text" class="form-control" id="title-update" value="{{recipe.name}}" placeholder="Add recipe name">
+      </div>
+      <div class="form-group m-3">
+        <label for="recipe-ingredients-add" class="form-label custom-label">Ingredients</label>
+        <textarea class="form-control" placeholder="Separate ingredients with comma (ex. 1 cup sugar, 2 cups flour, etc.)" id="ingredients-update" style="height: 200px">{{recipe.ingredients}}</textarea>
+      </div>
+      <div class="form-group m-3">
+        <label for="recipe-directions-add" class="form-label custom-label">Directions:</label>
+        <textarea class="form-control" placeholder="Write directions in paragraph form (ex. preheat oven to 360 degrees. Combine dry ingredients...)" id="directions-update" style="height: 200px">{{recipe.directions}}</textarea>
+      </div>
+      <div class="form-group m-3">
+        <label for="cooktime-add" class="form-label custom-label">Cook Time: </label>
+        <textarea class="form-control" placeholder="(ex. 20 mins)" id="cooktime-update" style="height: 200px">{{recipe.cook_time}}</textarea>
+      </div>
+      <div class="form-group m-3">
+        <label for="comments-add" class="form-label custom-label">Comments:  </label>
+        <textarea class="form-control" placeholder="Enter comments if any..." id="comments-update" style="height: 200px">{{recipe.comments}}</textarea>
+      </div>
+      <div class="d-flex justify-content-around border-top pt-3">
+         <button class="btn btn-primary mb-3 mx-5" id="update-recipe" style="width:fit-content; padding: .75rem;"
+        type="submit">Update Recipe</button>
+         <button class="delete-recipe-btns btn btn-primary mb-3 mx-5" id="delete-recipe-btn"
+        style="width: fit-content; padding: 3px 5px 3px 5px;" type="submit">Delete Recipe</button>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<script src="/js/updaterecipe.js"></script>
+<script src="/js/deleterecipe.js"></script>

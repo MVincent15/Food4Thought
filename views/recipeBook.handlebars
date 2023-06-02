@@ -5,8 +5,9 @@
 <div>
     <div>
         <h2>Search My Recipes</h2>
-        <input type="text" name="search-recipes" id="search-recipes" placeholder="search recipes..."
-            class="form-control litanswer mb-5 mt-3">
+        <input type="text" name="search-recipes" id="search-recipes" placeholder="search recipes by recipe name..."
+            class="form-control litanswer mb-2 mt-3">
+        <input class="btn btn-primary mb-5" type="submit" id="search-recipes-btn" value="Search">    
     </div>
     <script type="text/javascript">
         $(function () {
@@ -23,7 +24,6 @@
                         },
                         success: function (data) {
                             response(data);
-                            console.log(data);
                         },
                         error: function (xhr, status, error) {
                             console.log(error);
@@ -52,3 +52,5 @@
     </div>
     {{/if}}
 </div>
+
+<script src="/js/searchrecipes.js"></script>

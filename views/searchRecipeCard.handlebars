@@ -46,28 +46,28 @@
 <body>
     <div class="card">
         <div class="card-header mb-0">
-            <h2 id="recipe-title" class="card-title">{{name}}</h2>
+            <h2 id="recipe-title" class="card-title">{{recipe.name}}</h2>
         </div>
         <div class="card-body">
             <h3 class="card-subtitle">Ingredients:</h3>
             <ul>
-                {{#each (split_ingredients ingredients) as |ingredient|}}
+                {{#each (split_ingredients recipe.ingredients) as |ingredient|}}
                 <li>{{ingredient}}</li>
                 {{/each}}
             </ul>
             <h3 class="card-subtitle">Directions:</h3>
             <ol>
-                {{#each (split_directions directions) as |direction|}}
+                {{#each (split_directions recipe.directions) as |direction|}}
                 <li>{{direction}}</li>
                 {{/each}}
             </ol>
-            <p class="card-text">Cook Time: {{cook_time}}</p>
-            {{#if comments.length}}
-            <p class="card-text">Comments: {{comments}}</p>
+            <p class="card-text">Cook Time: {{recipe.cook_time}}</p>
+            {{#if recipe.comments.length}}
+            <p class="card-text">Comments: {{recipe.comments}}</p>
             {{/if}}
         </div>
         <div class="border-top pt-3 px-3">
-            <a href="/dashboard/updaterecipe/{{id}}" class="edit-recipe-btns btn btn-primary d-block w-100 mb-3 mx-auto"
+            <a href="/updaterecipe/{{recipe.id}}" class="edit-recipe-btns btn btn-primary d-block w-100 mb-3 mx-auto"
                 id="edit-recipe-btn" type="submit">Edit Recipe</a>
         </div>
     </div>

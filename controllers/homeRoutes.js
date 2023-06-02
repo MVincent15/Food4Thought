@@ -181,7 +181,6 @@ router.get("/search", async (req, res) => {
   try {
     const key = req.query.key;
     const attribute = req.query.attribute;
-    // Query the Recipe model using sequelize's 'like' operator
     const recipes = await Recipe.findAll({
       where: {
         user_id: req.session.user_id,
@@ -191,14 +190,13 @@ router.get("/search", async (req, res) => {
       },
     });
 
-    // Construct an array of objects with 'label' and 'value' properties
     const results = recipes.map((recipe) => ({
-      label: recipe.name, // Use 'name' field as label
-      value: recipe.name, // Use 'name' field as value
-      id: recipe.id, // Use 'id' field as id
+      label: recipe.name,
+      value: recipe.name, 
+      id: recipe.id,
     }));
 
-    res.json(results); // Return the results as JSON
+    res.json(results);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);

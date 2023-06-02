@@ -1,16 +1,54 @@
- {{#if recipes}}
- <div class="row">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" />
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<div>
+    <div>
+        <h2>Search My Recipes</h2>
+        <input type="text" name="search-recipes" id="search-recipes" placeholder="search recipes..."
+            class="form-control litanswer mb-5 mt-3">
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $("#search-recipes").autocomplete({
+                name: 'search-recipes',
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/search',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            key: encodeURIComponent(request.term),
+                            attribute: 'name'
+                        },
+                        success: function (data) {
+                            response(data);
+                            console.log(data);
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                },
+                limit: 4
+            });
+        });
+    </script>
+
+    {{#if recipes}}
+    <div class="row">
         {{#each recipes as |recipe|}}
         <div class="col-md-4">
             <div class="d-flex justify-content-center">
-                {{> recipeCardNoEdit}}
+                {{> recipeCard}}
             </div>
         </div>
         {{/each}}
     </div>
     {{else}}
     <div class="p-2">
-    <h4 class="ms-4 mt-3">You Don't Have Any Recipes Yet!</h4>
-    <p class="ms-4">Click on the dashboard to create some recipes.</p>
+        <h4 class="ms-4 mt-3">You Don't Have Any Recipes Yet!</h4>
+        <p class="ms-4">Click on the dashboard to create some recipes.</p>
     </div>
     {{/if}}
+</div>

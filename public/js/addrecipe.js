@@ -9,7 +9,7 @@ const createRecipeFormHandler = async (event) => {
 
   if (title && ingredients && directions) {
     // need to update fetch route once we establish routes
-    const response = await fetch("/dashboard/addrecipe", {
+    const response = await fetch("/addrecipe", {
       method: "POST",
       body: JSON.stringify({ title, ingredients, directions, cookTime, comments }),
       headers: { "Content-Type": "application/json" },
@@ -17,7 +17,7 @@ const createRecipeFormHandler = async (event) => {
 
     if (response.ok) {
       // need to update route which this code will navigate to after successfull recipe add once we establish routes
-      document.location.replace("/dashboard");
+      document.location.replace("/recipebook");
     } else {
       alert("Failed to add recipe.");
     }

@@ -1,11 +1,12 @@
 const router = require("express").Router();
 const { Recipe, User } = require("../models");
 const withAuth = require("../utils/auth");
+const { Op } = require("sequelize");
 
 router.get("/", async (req, res) => {
   try {
     res.render("homepage", {
-        loggedIn: req.session.loggedIn
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     console.log(err);
@@ -13,36 +14,36 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/dashboard", withAuth, async (req, res) => {
-  try {
-    const userRecipeData = await Recipe.findAll({
-      where: {
-        user_id: req.session.user_id,
-      },
-      include: {
-        model: User,
-        attributes: {
-          exclude: ["password"],
-        },
-      },
-    });
+// router.get("/dashboard", withAuth, async (req, res) => {
+//   try {
+//     const userRecipeData = await Recipe.findAll({
+//       where: {
+//         user_id: req.session.user_id,
+//       },
+//       include: {
+//         model: User,
+//         attributes: {
+//           exclude: ["password"],
+//         },
+//       },
+//     });
 
-    console.log(req.session.user_id);
+//     console.log(req.session.user_id);
 
-    const recipes = userRecipeData.map((recipe) => recipe.get({ plain: true }));
-    console.log({ recipes });
+//     const recipes = userRecipeData.map((recipe) => recipe.get({ plain: true }));
+//     console.log({ recipes });
 
-    res.render("dashboard", { recipes, loggedIn: req.session.loggedIn });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+//     res.render("dashboard", { recipes, loggedIn: req.session.loggedIn });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 
-router.get("/dashboard/addrecipe", async (req, res) => {
+router.get("/addrecipe", async (req, res) => {
   try {
     res.render("addRecipe", {
-        loggedIn: req.session.loggedIn
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     console.log(err);
@@ -50,7 +51,7 @@ router.get("/dashboard/addrecipe", async (req, res) => {
   }
 });
 
-router.post("/dashboard/addrecipe", withAuth, async (req, res) => {
+router.post("/addrecipe", withAuth, async (req, res) => {
   try {
     const newRecipe = await Recipe.create({
       name: req.body.title,
@@ -67,20 +68,24 @@ router.post("/dashboard/addrecipe", withAuth, async (req, res) => {
   }
 });
 
-router.get("/dashboard/updaterecipe/:id", async (req, res) => {
+router.get("/updaterecipe/:id", async (req, res) => {
   try {
     const recipeData = await Recipe.findByPk(req.params.id, {
-      include: [{ model: User,
-      attributes: {
-        exclude: ["password"],
-      }}]
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: ["password"],
+          },
+        },
+      ],
     });
-    
+
     const recipe = recipeData.get({ plain: true });
 
     res.render("updateRecipe", {
-        recipe: recipe,
-        loggedIn: req.session.loggedIn,
+      recipe: recipe,
+      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     console.log(err);
@@ -88,7 +93,7 @@ router.get("/dashboard/updaterecipe/:id", async (req, res) => {
   }
 });
 
-router.put("/dashboard/updaterecipe/:id", withAuth, async (req, res) => {
+router.put("/updaterecipe/:id", withAuth, async (req, res) => {
   try {
     const recipeData = await Recipe.update(req.body, {
       where: {
@@ -96,19 +101,19 @@ router.put("/dashboard/updaterecipe/:id", withAuth, async (req, res) => {
       },
     });
 
-    if(!recipeData[0]) {
-      res.status(404).json({message: 'No recipe found!'});
+    if (!recipeData[0]) {
+      res.status(404).json({ message: "No recipe found!" });
       return;
     }
 
-    res.render("dashboard", { recipeData, loggedIn: req.session.loggedIn });
+    res.render("recipeBook", { recipeData, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
 
-router.delete("/dashboard/deleterecipe/:id", withAuth, async (req, res) => {
+router.delete("/deleterecipe/:id", withAuth, async (req, res) => {
   try {
     const recipeData = await Recipe.destroy({
       where: {
@@ -125,6 +130,32 @@ router.delete("/dashboard/deleterecipe/:id", withAuth, async (req, res) => {
     res.status(200).json(recipeData);
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+router.get("/search", async (req, res) => {
+  try {
+    const key = req.query.key;
+    const attribute = req.query.attribute;
+    // Query the Recipe model using sequelize's 'like' operator
+    const recipes = await Recipe.findAll({
+      where: {
+        [attribute]: {
+          [Op.like]: `%${key}%`,
+        },
+      },
+    });
+
+    // Construct an array of objects with 'label' and 'value' properties
+    const results = recipes.map((recipe) => ({
+      label: recipe.name, // Use 'name' field as label
+      value: recipe.id, // Use 'id' field as value
+    }));
+
+    res.json(results); // Return the results as JSON
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
   }
 });
 

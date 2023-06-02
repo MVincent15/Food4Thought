@@ -1,0 +1,74 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        width: 100%;
+        min-width: fit-content;
+        margin: 0 auto;
+        background-color: white;
+        padding: 2rem;
+        border: 4px solid #006400;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+        font-family: 'Bubblegum Sans', cursive;
+        background-color: #609460;
+        color: white;
+        font-size: 32px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        text-shadow: -1px -1px 0 #2c492c, 1px -1px 0 #2c492c, -1px 1px 0 #2c492c, 1px 1px 0 #2c492c;
+    }
+
+    .card-subtitle {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+    }
+
+    .card-text {
+        font-style: italic;
+    }
+
+    .edit-recipe-btns {
+        font-size: 20px;
+        text-align: center;
+    }
+</style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="card-header mb-0">
+            <h2 id="recipe-title" class="card-title">{{name}}</h2>
+        </div>
+        <div class="card-body">
+            <h3 class="card-subtitle">Ingredients:</h3>
+            <ul>
+                {{#each (split_ingredients ingredients) as |ingredient|}}
+                <li>{{ingredient}}</li>
+                {{/each}}
+            </ul>
+            <h3 class="card-subtitle">Directions:</h3>
+            <ol>
+                {{#each (split_directions directions) as |direction|}}
+                <li>{{direction}}</li>
+                {{/each}}
+            </ol>
+            <p class="card-text">Cook Time: {{cook_time}}</p>
+            {{#if comments.length}}
+            <p class="card-text">Comments: {{comments}}</p>
+            {{/if}}
+        </div>
+        <div class="border-top pt-3 px-3">
+            <a href="/dashboard/updaterecipe/{{id}}" class="edit-recipe-btns btn btn-primary d-block w-100 mb-3 mx-auto"
+                id="edit-recipe-btn" type="submit">Edit Recipe</a>
+        </div>
+    </div>
+</body>

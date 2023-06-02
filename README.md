@@ -6,9 +6,10 @@
   - [Project Description](#description)
   - [Usage](#usage)
   - [Installation](#installation)
-  - [Contribution](#contribution)
-  - [Questions](#questions)
   - [License](#license)
+  - [Contribution](#contribution)
+  - [Credits](#credits)
+  - [Questions](#questions)
   - [Test](#test)
 
 
@@ -23,14 +24,17 @@
 
   ## License
   
+  ## Contribution
+  n/a
+
+  ## Credits
+  Tutorials Followed:<br>
+  [Node.js Autocomplete Search From MySQL Database](https://www.tutsmake.com/node-js-mysql-autocomplete-search-example/)
 
   ## Questions
   -https://github.com/MVincent15/Food4Thought
 
   -example@gmail.com
   
-  ## Contribution
-  n/a
-
   ## Test
   n/a

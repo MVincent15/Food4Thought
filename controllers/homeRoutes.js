@@ -14,31 +14,75 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.get("/dashboard", withAuth, async (req, res) => {
-//   try {
-//     const userRecipeData = await Recipe.findAll({
-//       where: {
-//         user_id: req.session.user_id,
-//       },
-//       include: {
-//         model: User,
-//         attributes: {
-//           exclude: ["password"],
-//         },
-//       },
-//     });
+router.get("/recipebook", withAuth, async (req, res) => {
+  try {
+    const userRecipeData = await Recipe.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+      include: {
+        model: User,
+        attributes: {
+          exclude: ["password"],
+        },
+      },
+    });
 
-//     console.log(req.session.user_id);
+    console.log(req.session.user_id);
 
-//     const recipes = userRecipeData.map((recipe) => recipe.get({ plain: true }));
-//     console.log({ recipes });
+    const recipes = userRecipeData.map((recipe) => recipe.get({ plain: true }));
+    console.log({ recipes });
 
-//     res.render("dashboard", { recipes, loggedIn: req.session.loggedIn });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+    res.render("recipeBook", { recipes, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get('/recipes/search/:name', async (req, res) => {
+  try {
+    const name = req.params.name;
+    const recipes = await Recipe.findAll({
+      where: {
+        name: {
+           [Op.like]: `%${name}%`,
+        }
+      }
+    });
+
+    res.json(recipes);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send('Server Error');
+  }
+});
+
+router.get("/recipe/:id", async (req, res) => {
+  try {
+    const recipeData = await Recipe.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: ["password"],
+          },
+        },
+      ],
+    });
+
+    const recipe = recipeData.get({ plain: true });
+    console.log(recipe);
+    res.render("searchRecipeCard", {
+      recipe: recipe,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 
 router.get("/addrecipe", async (req, res) => {
   try {
@@ -137,53 +181,28 @@ router.get("/search", async (req, res) => {
   try {
     const key = req.query.key;
     const attribute = req.query.attribute;
-    // Query the Recipe model using sequelize's 'like' operator
     const recipes = await Recipe.findAll({
       where: {
+        user_id: req.session.user_id,
         [attribute]: {
           [Op.like]: `%${key}%`,
         },
       },
     });
 
-    // Construct an array of objects with 'label' and 'value' properties
     const results = recipes.map((recipe) => ({
-      label: recipe.name, // Use 'name' field as label
-      value: recipe.id, // Use 'id' field as value
+      label: recipe.name,
+      value: recipe.name, 
+      id: recipe.id,
     }));
 
-    res.json(results); // Return the results as JSON
+    res.json(results);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
   }
 });
 
-router.get("/recipebook", withAuth, async (req, res) => {
-  try {
-    const userRecipeData = await Recipe.findAll({
-      where: {
-        user_id: req.session.user_id,
-      },
-      include: {
-        model: User,
-        attributes: {
-          exclude: ["password"],
-        },
-      },
-    });
-
-    console.log(req.session.user_id);
-
-    const recipes = userRecipeData.map((recipe) => recipe.get({ plain: true }));
-    console.log({ recipes });
-
-    res.render("recipeBook", { recipes, loggedIn: req.session.loggedIn });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
 
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {

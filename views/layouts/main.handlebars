@@ -33,7 +33,7 @@
                     </li>
                     {{#if loggedIn}}
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id="logout">Logout</a>
+                        <a class="nav-link" id="logout">Logout</a>
                     </li>
                     {{else}}
                     <li class="nav-item">
@@ -44,8 +44,8 @@
             </div>
         </div>
     </nav>
-    <main>
-        <div class="container">
+    <main class="min-vh-100 d-flex flex-column">
+        <div class="container flex-grow-1">
             {{{body}}}
         </div>
     </main>

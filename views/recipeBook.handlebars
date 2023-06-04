@@ -3,11 +3,12 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 <div>
+    {{#if recipes}}
     <div>
         <h2>Search My Recipes</h2>
         <input type="text" name="search-recipes" id="search-recipes" placeholder="search recipes by recipe name..."
             class="form-control litanswer mb-2 mt-3">
-        <input class="btn btn-primary mb-5" type="submit" id="search-recipes-btn" value="Search">    
+        <input class="btn btn-success mb-5" type="submit" id="search-recipes-btn" value="Search">
     </div>
     <script type="text/javascript">
         $(function () {
@@ -35,7 +36,6 @@
         });
     </script>
 
-    {{#if recipes}}
     <div class="row">
         {{#each recipes as |recipe|}}
         <div class="col-md-4">
@@ -47,8 +47,11 @@
     </div>
     {{else}}
     <div class="p-2">
-        <h4 class="ms-4 mt-3">You Don't Have Any Recipes Yet!</h4>
-        <p class="ms-4">Click on the dashboard to create some recipes.</p>
+        <h2 class="ms-4 mt-5 mb-4">You Don't Have Any Recipes Yet!</h2>
+        <h5 class="ms-4">Click on Add Recipe to create some new</h5>
+        <h5 class="ms-4">recipes and start your recipe book.</h5>
+        <a href="/addrecipe" class="btn btn-success my-3 ms-4" id="create-recipe" style="width:fit-content; padding: auto;"
+            type="submit">Add Recipe</a>
     </div>
     {{/if}}
 </div>

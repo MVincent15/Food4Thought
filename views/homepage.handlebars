@@ -2,20 +2,24 @@
     <div class="container">
         <div class="row pt-4">
             <div class="col-md-5">
-                <h3 class="mb-4">Welcome!</h3>
+                <h2 class="mb-4 mt-4">Welcome!</h2>
                 {{#if loggedIn}}
-                <p>You can click on the Recipe Book to find your saved recipes, or on the dashboard to add a new recipe
-                    to the book, or if you need to edit or delete any recipes!
-                </p>
+                <h5>To view your saved recipies, click on "Recipe Book" in the navbar. Click the name of the desired recipe
+                    or use the search bar. Once you are viewing your desired recipe, you can click on the edit button to
+                    update or delete your recipe. To create a new recipe, click on "Add Recipe" in the navbar
+                    and add it to your book!
+                </h5>
                 {{else}}
-                <p>To enjoy please login or sign-up</p>
+                <h5>To enjoy please login or sign-up</h5>
                 <div class="row pt-3 d-flex justify-content-center">
                     <div class="col-md-6 my-3">
 
-                        <a href="/login" class="btn btn-lg btn-light btn-outline-success login-form login-btn" type="submit">Login</a>
+                        <a href="/login" class="btn btn-lg btn-light btn-outline-success login-form login-btn"
+                            type="submit">Login</a>
                     </div>
                     <div class="col-md-6 my-3">
-                        <a href="/signup" class="btn btn-lg btn-light btn-outline-success signup-form signup-btn" type="submit">Sign-Up</a>
+                        <a href="/signup" class="btn btn-lg btn-light btn-outline-success signup-form signup-btn"
+                            type="submit">Sign-Up</a>
                     </div>
                 </div>
                 {{/if}}

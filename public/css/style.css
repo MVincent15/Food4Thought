@@ -1,6 +1,6 @@
 body {
-    background-color: #83c082;
-    margin-bottom: 80px;
+    height: 100%;
+  
 }
 
 .navbar {
@@ -27,14 +27,14 @@ body {
 
 main {
     padding: 20px;
+    color:rgb(254, 254, 246);
 }
 
 footer {
     background-color: #ffffff;
     color: #045f22;
-    padding: 20px 0;
+    padding: 15px 0;
     text-align: center;
-    position: fixed;
     bottom: 0;
     width: 100%;
 }
@@ -43,21 +43,23 @@ footer {
     margin-bottom: 0;
 }
 
-@media screen and (max-width: 765px) {}
+/* @media screen and (max-width: 765px) {}
 
 body {
     background-color: #83c082;
-}
+} */
 
 main {
-    background-color: #83c082;
+    background-image: url('/images/ingredient-stock-photo.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
-@media screen and (min-width: 766px) {
+/* @media screen and (min-width: 766px) {
     main {
 
         background-color: #83c082;
 
     }
 
-}
+} */

@@ -1,26 +1,10 @@
-<div class="card mb-3" style="width: 25rem; min-width:fit-content;">
-    <div class="card-header mb-0">
-        <h2 id="recipe-title" class="card-title">{{name}}</h2>
+<div class="card mb-3" style="width: 25rem; min-width:fit-content; border: 2px solid #006400;">
+    <div class="card-header pt-3 mb-0 text-center">
+        <a href="/recipe/{{id}}" style="color:#006400;">
+            <h4 id="recipe-title" class="card-title">{{name}}</h4>
+        </a>
     </div>
     <div class="card-body">
-        <p class="card-text">Ingredients:</p>
-        <ul>
-            {{#each (split_ingredients ingredients) as |ingredient|}}
-            <li>{{ingredient}}</li>
-            {{/each}}
-        </ul>
-        <p class="card-text">Directions:</p>
-        <ul>
-            {{#each (split_directions directions) as |direction|}}
-            <li>{{direction}}</li>
-            {{/each}}
-        </ul>
         <p class="card-text">Cook Time: {{cook_time}}</p>
-        {{#if comments.length}}
-        <p class="card-text">Comments: {{comments}}</p>
-        {{/if}}
-    </div>
-    <div class="border-top pt-3 px-3">
-        <a href="/updaterecipe/{{id}}" class="edit-recipe-btns btn btn-primary d-block w-100 mb-3 mx-auto" id="edit-recipe-btn" type="submit">Edit Recipe</a>
     </div>
 </div>

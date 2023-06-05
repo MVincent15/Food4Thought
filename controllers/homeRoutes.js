@@ -49,8 +49,8 @@ router.get("/recipebook", withAuth, async (req, res) => {
       } = recipe.get({ plain: true });
       if (image_url !== null && image_url.trim().length !== 0) {
         const cloudinaryUrl = cloudinary.url(image_url, {
-          width: 300,
-          height: 300,
+          width: 100,
+          height: 100,
           crop: "fill",
         });
 

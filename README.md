@@ -1,12 +1,9 @@
 # Food 4 Thought
 
-    
-  
   ## Table of Contents
   - [Project Description](#description)
   - [Usage](#usage)
   - [Installation](#installation)
-  - [License](#license)
   - [Contribution](#contribution)
   - [Credits](#credits)
   - [Questions](#questions)
@@ -20,10 +17,9 @@
   Creating, storing, edit and deleting data for recipes
 
   ## Installation
-  run the npm install package
+  Git Clone the Repo, run npm i to install the necessary dependencies. Run mysql to source the schema and use node to run the seeds. Lastly, use npm start to run the program.
 
-  ## License
-  
+
   ## Contribution
   n/a
 

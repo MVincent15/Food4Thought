@@ -3,6 +3,11 @@ const { User } = require("../../models");
 
 router.post("/signup", async (req, res) => {
   try {
+
+    if (password.length < 6) {
+      return res.status(400).json({ error: "Password must be at least 6 characters long" });
+    }
+
     const dbUserData = await User.create({
       username: req.body.username,
       email: req.body.email,

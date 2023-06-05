@@ -46,7 +46,7 @@ router.get('/recipes/search/:name', async (req, res) => {
     const recipes = await Recipe.findAll({
       where: {
         name: {
-           [Op.like]: `%${name}%`,
+          [Op.like]: `%${name}%`,
         }
       }
     });
@@ -97,6 +97,9 @@ router.get("/addrecipe", async (req, res) => {
 
 router.post("/addrecipe", withAuth, async (req, res) => {
   try {
+    if (!req.body.title || !req.body.ingredients || !req.body.directions || !req.body.cookTime) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
     const newRecipe = await Recipe.create({
       name: req.body.title,
       ingredients: req.body.ingredients,
@@ -124,7 +127,10 @@ router.get("/updaterecipe/:id", async (req, res) => {
         },
       ],
     });
-
+    
+    if (!recipeData) {
+      return res.status(404).json({ error: "Recipe not found" });
+    }
     const recipe = recipeData.get({ plain: true });
 
     res.render("updateRecipe", {
@@ -192,7 +198,7 @@ router.get("/search", async (req, res) => {
 
     const results = recipes.map((recipe) => ({
       label: recipe.name,
-      value: recipe.name, 
+      value: recipe.name,
       id: recipe.id,
     }));
 

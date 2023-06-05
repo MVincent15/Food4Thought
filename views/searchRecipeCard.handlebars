@@ -43,8 +43,12 @@
 
 <body>
     <div class="card">
-        <div class="card-header mb-0">
-            <h2 id="recipe-title" class="card-title">{{recipe.name}}</h2>
+        <div class="card-header mb-0" style="display: flex; justify-content: center; align-items: center;">
+            <h2 id="recipe-title" class="card-title px-1" style="border-radius:5px;">{{recipe.name}}</h2>
+            {{#if recipe.image_url.length}}
+            <image src="{{recipe.image_url}}" alt="Recipe image"
+                style="height: 100px; width:auto; border: 1px solid #006400; margin-left: 10px;"></image>
+            {{/if}}
         </div>
         <div class="card-body">
             <h3 class="card-subtitle">Ingredients:</h3>

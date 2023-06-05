@@ -6,12 +6,13 @@ const createRecipeFormHandler = async (event) => {
   const directions = document.querySelector("#directions-add").value.trim();
   const cookTime = document.querySelector("#cooktime-add").value.trim();
   const comments = document.querySelector("#comments-add").value.trim();
+  const image_url = document.querySelector("#image-add").value.trim();
 
   if (title && ingredients && directions) {
     // need to update fetch route once we establish routes
     const response = await fetch("/addrecipe", {
       method: "POST",
-      body: JSON.stringify({ title, ingredients, directions, cookTime, comments }),
+      body: JSON.stringify({ title, ingredients, directions, cookTime, comments, image_url }),
       headers: { "Content-Type": "application/json" },
     });
 

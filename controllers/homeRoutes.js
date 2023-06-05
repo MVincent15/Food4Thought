@@ -2,6 +2,13 @@ const router = require("express").Router();
 const { Recipe, User } = require("../models");
 const withAuth = require("../utils/auth");
 const { Op } = require("sequelize");
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.API_SECRET,
+});
 
 router.get("/", async (req, res) => {
   try {
@@ -30,7 +37,45 @@ router.get("/recipebook", withAuth, async (req, res) => {
 
     console.log(req.session.user_id);
 
-    const recipes = userRecipeData.map((recipe) => recipe.get({ plain: true }));
+    const recipes = userRecipeData.map((recipe) => {
+      const {
+        id,
+        name,
+        ingredients,
+        directions,
+        cook_time,
+        comments,
+        image_url,
+      } = recipe.get({ plain: true });
+      if (image_url !== null && image_url.trim().length !== 0) {
+        const cloudinaryUrl = cloudinary.url(image_url, {
+          width: 100,
+          height: 100,
+          crop: "fill",
+        });
+
+        return {
+          id: id,
+          name: name,
+          ingredients: ingredients,
+          directions: directions,
+          cook_time: cook_time,
+          comments: comments,
+          image_url: cloudinaryUrl,
+        };
+      } else {
+        return {
+          id: id,
+          name: name,
+          ingredients: ingredients,
+          directions: directions,
+          cook_time: cook_time,
+          comments: comments,
+          image_url: image_url,
+        };
+      }
+    });
+
     console.log({ recipes });
 
     res.render("recipeBook", { recipes, loggedIn: req.session.loggedIn });
@@ -40,21 +85,21 @@ router.get("/recipebook", withAuth, async (req, res) => {
   }
 });
 
-router.get('/recipes/search/:name', async (req, res) => {
+router.get("/recipes/search/:name", async (req, res) => {
   try {
     const name = req.params.name;
     const recipes = await Recipe.findAll({
       where: {
         name: {
           [Op.like]: `%${name}%`,
-        }
-      }
+        },
+      },
     });
 
     res.json(recipes);
   } catch (err) {
     console.log(err);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 });
 
@@ -73,6 +118,16 @@ router.get("/recipe/:id", async (req, res) => {
 
     const recipe = recipeData.get({ plain: true });
     console.log(recipe);
+    if (recipe.image_url && recipe.image_url.trim().length > 0) {
+      const image_url = recipe.image_url;
+      const cloudinaryUrl = cloudinary.url(image_url, {
+        width: 300,
+        height: 300,
+        crop: "fill",
+      });
+      recipe.image_url = cloudinaryUrl;
+    }
+    
     res.render("searchRecipeCard", {
       recipe: recipe,
       loggedIn: req.session.loggedIn,
@@ -82,7 +137,6 @@ router.get("/recipe/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 router.get("/addrecipe", async (req, res) => {
   try {
@@ -97,7 +151,12 @@ router.get("/addrecipe", async (req, res) => {
 
 router.post("/addrecipe", withAuth, async (req, res) => {
   try {
-    if (!req.body.title || !req.body.ingredients || !req.body.directions || !req.body.cookTime) {
+    if (
+      !req.body.title ||
+      !req.body.ingredients ||
+      !req.body.directions ||
+      !req.body.cookTime
+    ) {
       return res.status(400).json({ error: "Missing required fields" });
     }
     const newRecipe = await Recipe.create({
@@ -127,7 +186,7 @@ router.get("/updaterecipe/:id", async (req, res) => {
         },
       ],
     });
-    
+
     if (!recipeData) {
       return res.status(404).json({ error: "Recipe not found" });
     }
@@ -208,7 +267,6 @@ router.get("/search", async (req, res) => {
     res.sendStatus(500);
   }
 });
-
 
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {

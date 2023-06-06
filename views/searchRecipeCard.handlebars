@@ -45,10 +45,6 @@
     <div class="card">
         <div class="card-header mb-0" style="display: flex; justify-content: center; align-items: center;">
             <h2 id="recipe-title" class="card-title px-1" style="border-radius:5px;">{{recipe.name}}</h2>
-            {{#if recipe.image_url.length}}
-            <image src="{{recipe.image_url}}" alt="Recipe image"
-                style="height: 100px; width:auto; border: 1px solid #006400; margin-left: 10px;"></image>
-            {{/if}}
         </div>
         <div class="card-body">
             <h3 class="card-subtitle">Ingredients:</h3>
@@ -67,10 +63,15 @@
             {{#if recipe.comments.length}}
             <p class="card-text">Comments: {{recipe.comments}}</p>
             {{/if}}
+            {{#if recipe.image_url.length}}
+            <image src="{{recipe.image_url}}" alt="Recipe image"
+                style="height: 250px; width:auto; border: 5px solid #006400; margin-left: 100px;"></image>
+            {{/if}}
         </div>
         <div class="border-top pt-3 px-3">
             <a href="/updaterecipe/{{recipe.id}}" class="edit-recipe-btns btn btn-outline-success d-block w-100 mb-3 mx-auto"
                 id="edit-recipe-btn" type="submit">Edit Recipe</a>
         </div>
     </div>
+
 </body>

@@ -10,7 +10,6 @@ const updateRecipeFormHandler = async (event) => {
     const recipeId = window.location.pathname.split("/")[2];
   
     if (title && ingredients && directions) {
-      // need to update fetch route once we establish routes
       const response = await fetch(`/updaterecipe/${recipeId}`, {
         method: "PUT",
         body: JSON.stringify({ title, ingredients, directions, cook_time, comments, image_url }),
@@ -18,7 +17,6 @@ const updateRecipeFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        // need to update route which this code will navigate to after successfull recipe add once we establish routes
         document.location.replace("/recipebook");
       } else {
         alert("Failed to update recipe.");

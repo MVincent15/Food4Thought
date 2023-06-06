@@ -165,6 +165,7 @@ router.post("/addrecipe", withAuth, async (req, res) => {
       directions: req.body.directions,
       cook_time: req.body.cookTime,
       comments: req.body.comments,
+      image_url: req.body.image_url,
       user_id: req.session.user_id,
     });
 

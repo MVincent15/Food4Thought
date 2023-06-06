@@ -9,7 +9,6 @@ const createRecipeFormHandler = async (event) => {
   const image_url = document.querySelector("#image-add").value.trim();
 
   if (title && ingredients && directions) {
-    // need to update fetch route once we establish routes
     const response = await fetch("/addrecipe", {
       method: "POST",
       body: JSON.stringify({ title, ingredients, directions, cookTime, comments, image_url }),
@@ -17,7 +16,6 @@ const createRecipeFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      // need to update route which this code will navigate to after successfull recipe add once we establish routes
       document.location.replace("/recipebook");
     } else {
       alert("Failed to add recipe.");

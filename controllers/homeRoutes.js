@@ -103,7 +103,7 @@ router.get("/recipes/search/:name", async (req, res) => {
   }
 });
 
-router.get("/recipe/:id", async (req, res) => {
+router.get("/recipe/:id", withAuth, async (req, res) => {
   try {
     const recipeData = await Recipe.findByPk(req.params.id, {
       include: [
@@ -138,7 +138,7 @@ router.get("/recipe/:id", async (req, res) => {
   }
 });
 
-router.get("/addrecipe", async (req, res) => {
+router.get("/addrecipe", withAuth, async (req, res) => {
   try {
     res.render("addRecipe", {
       loggedIn: req.session.loggedIn,
@@ -174,7 +174,7 @@ router.post("/addrecipe", withAuth, async (req, res) => {
   }
 });
 
-router.get("/updaterecipe/:id", async (req, res) => {
+router.get("/updaterecipe/:id", withAuth, async (req, res) => {
   try {
     const recipeData = await Recipe.findByPk(req.params.id, {
       include: [
@@ -242,7 +242,7 @@ router.delete("/deleterecipe/:id", withAuth, async (req, res) => {
   }
 });
 
-router.get("/search", async (req, res) => {
+router.get("/search", withAuth, async (req, res) => {
   try {
     const key = req.query.key;
     const attribute = req.query.attribute;

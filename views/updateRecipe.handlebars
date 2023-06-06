@@ -6,7 +6,7 @@
         <input type="text" class="form-control" id="title-update" value="{{recipe.name}}" placeholder="Add recipe name">
       </div>
       <div class="form-group m-3">
-        <label for="recipe-ingredients-add" class="form-label custom-label">Ingredients</label>
+        <label for="recipe-ingredients-add" class="form-label custom-label">Ingredients:</label>
         <textarea class="form-control" placeholder="Separate ingredients with comma (ex. 1 cup sugar, 2 cups flour, etc.)" id="ingredients-update" style="height: 200px">{{recipe.ingredients}}</textarea>
       </div>
       <div class="form-group m-3">
@@ -23,7 +23,7 @@
       </div>
        <div class="form-group m-3">
         <label for="comments-add" class="form-label custom-label">Image URL: </label>
-        <textarea class="form-control" placeholder="Enter the URL of the recipe image..." id="image-update"
+        <textarea class="form-control" placeholder="If desired/available, enter the URL of the recipe image..." id="image-update"
           style="height: 50px">{{recipe.image_url}}</textarea>
       </div>
       <div class="d-flex justify-content-around border-top pt-3">
